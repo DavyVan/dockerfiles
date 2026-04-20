@@ -12,6 +12,11 @@ jobs:
     outputs:
       images: ${{ steps.find_images.outputs.images }}
     steps:
+
+      - name: Set image tag with datetime
+        id: set_tag
+        run: echo "tag=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+
       - name: Checkout repository
         uses: actions/checkout@v5
 
@@ -45,4 +50,6 @@ jobs:
           context: ${{ matrix.image }}
           file: ${{ matrix.image }}/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:${{ env.tag }}
