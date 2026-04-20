@@ -18,7 +18,7 @@ jobs:
       - name: Find all Docker images
         id: find_images
         run: |
-          echo "images=$(ls -d */ | sed 's#/##' | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+          echo "images=$(ls -d */ | sed 's#/##' | grep -v '^composers$' | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
 
   build-and-push:
     needs: find-images
