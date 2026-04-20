@@ -35,7 +35,7 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           # list of Docker images to use as base name for tags
-          images: ${{ matrix.image }}
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}
           # generate Docker tags based on the following events/attributes
           tags: |
             type=raw,value={{date 'YYYYMMDD-HHmmss' tz='Asia/Shanghai'}}
@@ -56,4 +56,4 @@ jobs:
           context: ${{ matrix.image }}
           file: ${{ matrix.image }}/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
