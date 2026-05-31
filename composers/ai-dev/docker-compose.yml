@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  ai-dev-manylang:
+    image: affqqa/ai-dev-manylang:latest
+    container_name: ai-dev-manylang
+    # ports:
+    #   - "8080:8080"
+    # volumes:
+    #   - .:/okuru
+    entrypoint:
+      - sleep
+      - infinity

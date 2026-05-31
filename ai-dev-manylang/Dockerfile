@@ -5,5 +5,6 @@ RUN cd ~ && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/instal
 # ENV http_proxy="http://host.docker.internal:7890"
 # ENV https_proxy="http://host.docker.internal:7890"
 RUN curl -fsSL https://claude.ai/install.sh | bash 
+RUN npm install -g @openai/codex
 
 CMD ["bash"]
